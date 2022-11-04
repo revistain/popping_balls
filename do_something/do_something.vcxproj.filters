@@ -15,15 +15,27 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="소스.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="object.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="loop.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="prompt.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="object.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="loop.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="prompt.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
   </ItemGroup>

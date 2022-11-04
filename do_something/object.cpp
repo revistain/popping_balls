@@ -1,4 +1,5 @@
 #include "object.h"
+#define DAMPINGCOF 0.85
 
 void* ObjList::ptr = nullptr;
 object::object(float x, float y, int _weight) : weight(_weight) {
@@ -7,7 +8,7 @@ object::object(float x, float y, int _weight) : weight(_weight) {
 
 	int tempX = rand();
 	if ((tempX / 10) % 2) tempX = ~tempX + 1;
-	vec.x = tempX % 10;
+	vec.x = static_cast<float>(tempX % 5) / 10;
 	//vec.y = 0; pass
 
 	if (ObjList.ptr == nullptr) { prev = nullptr; }
@@ -23,6 +24,12 @@ float object::get_length_between(object& obj) const {
 	temp2 = temp2 * temp2;
 
 	return temp1 + temp2;
+}
+void object::reverseX_vec() {
+	vec.y = -vec.y * DAMPINGCOF;
+}
+void object::reverseY_vec() {
+	vec.x = -vec.x * DAMPINGCOF;
 }
 void object::apply_vec() {
 	pos.x += vec.x;

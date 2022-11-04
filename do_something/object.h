@@ -28,6 +28,8 @@ public:
 
 	float get_length_between(object& obj) const;
 	void printObj() const;
+	void reverseX_vec();
+	void reverseY_vec();
 
 	// loop
 	void apply_vec();
@@ -37,7 +39,10 @@ public:
 	__inline float getY() const { return pos.y; }
 	__inline float getW() const { return weight; }
 	__inline float getS() const { return speed; }
-	void add_vec(const float x, const float y) { vec.x += x; vec.y += y; }
+	__inline object* getPrev() const { return prev; }
+	__inline float getXvec() { return vec.x; }
+	__inline float getYvec() { return vec.y; }
+	__inline void add_vec(const float x, const float y) { vec.x += x; vec.y += y; }
 };
 
 class circle : public object {
