@@ -1,6 +1,8 @@
 #pragma once
 #include <windows.h>
-// https://noobtuts.com/cpp/frames-per-second
+////////////////////////////////////////////////
+// https://noobtuts.com/cpp/frames-per-second //
+////////////////////////////////////////////////
 
 class Interval
 {

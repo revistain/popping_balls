@@ -5,9 +5,12 @@ typedef struct {
 	float x, y;
 }Pos;
 
-typedef struct Vec2D {
+class Vec2D {
+public:
 	float x = 0, y = 0;
-}Vec2D;
+
+	Vec2D proj(const Vec2D& vec) const;
+};
 
 static struct ObjList {
 	static void* ptr;
@@ -16,6 +19,7 @@ static struct ObjList {
 class object {
 private:
 	object* prev;
+	object* next;
 	Pos pos;
 	Vec2D vec;
 	short color;
@@ -27,10 +31,11 @@ public:
 
 	//virtual void is_collision_with(object& obj) const = 0;
 
-	float get_length_between(object& obj) const;
+	float get_length_between(object* obj) const;
 	void printObj() const;
 	void reverseX_vec();
 	void reverseY_vec();
+	void elastic_collision(object* obj);
 
 	// loop
 	void apply_vec();
@@ -45,12 +50,19 @@ public:
 	__inline float getXvec() { return vec.x; }
 	__inline float getYvec() { return vec.y; }
 	__inline void add_vec(const float x, const float y) { vec.x += x; vec.y += y; }
+
+	// operator override
+	virtual bool operator==(object* obj) const = 0;
+
+	virtual ~object();
 };
 
 class circle : public object {
 private:
-	float r = 1;
+	float r = 5;
 public:
 	circle(float x, float y, int _weight) :object(x, y, _weight) {}
-	bool operator==(object& obj)const; // 충돌 감지
+	bool operator==(object* obj) const; // 충돌 감지
+
+	~circle() {}
 };

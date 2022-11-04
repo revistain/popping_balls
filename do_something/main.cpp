@@ -11,15 +11,19 @@ int main() {
 	prompt_main();
 	Fps fps;
 
-	circle circle1(8, 5, 3);
+	new circle(8, 5, 3);
 
 	int i = 0;
 	while (1) {
+		fps.update();
 		main_loop();
 
-		if(i % 30 == 0) new circle(rand()%80, rand()%30, rand()%5+1);
-		fps.update(); text_color(6);
-		gotoxy(0, 0); std::cout << "Fps: " << fps.get() << '\n';
+		if(i % 300 == 0) new circle(rand()%80, rand()%20, rand()%5+1);
+		text_color(6);
+		Sleep(1);
+		cls();
+
+		gotoxy(0, 0); std::cout << "Fps: " << fps.get() << "\n  ";// << i % 100 << std::endl;
 		i++;
 	}
 }

@@ -12,15 +12,22 @@ void gotoxy(int x, int y)
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), Cur);
 }
 
-void set_gravity(object*& obj) {
+void set_gravity(object* obj) {
 	obj->add_vec(0, GRAVITY*obj->getW());
 }
 
-void set_obj_collision(object*& obj) {
+void set_obj_collision(object* obj) {
+	object* ptr = static_cast<object*>(ObjList.ptr);
 
+	do {
+		if (obj != ptr && *obj == ptr) {
+			delete ptr;
+			break;
+		}
+	} while ((ptr = ptr->getPrev()) != nullptr);
 }
 
-void set_box_collision(object*& obj) {
+void set_box_collision(object* obj) {
 	if (obj->getY()+obj->getYvec() >= row) {
 		obj->reverseX_vec();
 	}
@@ -29,7 +36,7 @@ void set_box_collision(object*& obj) {
 	}
 }
 
-void renderer(object*& obj) {
+void renderer(object* obj) {
 	gotoxy(static_cast<int>(obj->getX()), static_cast<int>(obj->getY()));
 	text_color(obj->getColor());
 	std::cout << "¡Ü";
@@ -38,7 +45,6 @@ void renderer(object*& obj) {
 void main_loop() {
 	object* ptr = static_cast<object*>(ObjList.ptr);
 
-	system("cls");
 	do {
 		// do loop
 		set_gravity(ptr);

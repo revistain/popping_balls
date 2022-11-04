@@ -143,6 +143,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="object.cpp" />
     <ClCompile Include="prompt.cpp" />
+    <ClCompile Include="vector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="fps.h" />
