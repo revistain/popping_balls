@@ -1,5 +1,6 @@
 #include "loop.h"
-#define GRAVITY 0.1
+#include "prompt.h"
+#define GRAVITY 0.02
 #define col 80
 #define row 30
 
@@ -30,12 +31,14 @@ void set_box_collision(object*& obj) {
 
 void renderer(object*& obj) {
 	gotoxy(static_cast<int>(obj->getX()), static_cast<int>(obj->getY()));
+	text_color(obj->getColor());
 	std::cout << "¡Ü";
 }
 
 void main_loop() {
 	object* ptr = static_cast<object*>(ObjList.ptr);
 
+	system("cls");
 	do {
 		// do loop
 		set_gravity(ptr);

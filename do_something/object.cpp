@@ -1,10 +1,11 @@
 #include "object.h"
-#define DAMPINGCOF 0.85
+#define DAMPINGCOF 0.92
 
 void* ObjList::ptr = nullptr;
 object::object(float x, float y, int _weight) : weight(_weight) {
 	pos.x = x;
 	pos.y = y;
+	color = rand() % 14 + 1;
 
 	int tempX = rand();
 	if ((tempX / 10) % 2) tempX = ~tempX + 1;

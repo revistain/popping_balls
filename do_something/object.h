@@ -18,6 +18,7 @@ private:
 	object* prev;
 	Pos pos;
 	Vec2D vec;
+	short color;
 	float weight;
 	float speed = 0;
 
@@ -39,6 +40,7 @@ public:
 	__inline float getY() const { return pos.y; }
 	__inline float getW() const { return weight; }
 	__inline float getS() const { return speed; }
+	__inline short getColor() const { return color; }
 	__inline object* getPrev() const { return prev; }
 	__inline float getXvec() { return vec.x; }
 	__inline float getYvec() { return vec.y; }
