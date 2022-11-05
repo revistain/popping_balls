@@ -21,12 +21,6 @@ int main() {
 	prompt_main();
 	Fps fps;
 
-	new circle(rand() % 80, rand() % 20, rand() % 5 + 1);
-	new circle(rand() % 80, rand() % 20, rand() % 5 + 1);
-	new circle(rand() % 80, rand() % 20, rand() % 5 + 1);
-	new circle(rand() % 80, rand() % 20, rand() % 5 + 1);
-	new circle(rand() % 80, rand() % 20, rand() % 5 + 1);
-	new circle(rand() % 80, rand() % 20, rand() % 5 + 1);
 	int i = 0;
 	while (1) {
 		traverseLinkedList();
