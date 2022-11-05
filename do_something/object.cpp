@@ -12,7 +12,10 @@ object::object(float x, float y, int _weight) : weight(_weight) {
 	vec.x = static_cast<float>(tempX % 5) / 3;
 	//vec.y = 0; pass
 
-	if (ObjList.ptr == nullptr) { prev = nullptr; }
+	if (ObjList.ptr == nullptr) {
+		prev = nullptr;
+		next = nullptr;
+	}
 	else {
 		prev = static_cast<object*>(ObjList.ptr);
 		prev->next = this;
@@ -37,7 +40,22 @@ void object::reverseY_vec() {
 	vec.x = -vec.x * DAMPINGCOF;
 }
 void object::elastic_collision(object* obj) {
+	Vec2D temp1Vec(obj->getX() - getX(), obj->getY() - getY());
+	temp1Vec.normallize();
+	temp1Vec.scalar_multiply(DAMPINGCOF);
+	Vec2D temp2Vec(temp1Vec);
 
+	float v1 = getX() * getX() + getY() + getY();
+	v1 = sqrt(v1);
+	float v2 = obj->getX() * obj->getX() + obj->getY() * obj->getY();
+	v2 = sqrt(v2);
+
+	float w1 = getW(), w2 = obj->getW();
+	temp1Vec.scalar_multiply(-(((w1 - w2)/(w1 + w2))*v1 +(2 * w2/(w1 + w2))*v2)/v1);
+	temp2Vec.scalar_multiply(((2 * w1/(w1 + w2))*v1 + ((w2 - w1)/(w1 + w2))*v2)/v2);
+
+	vec = temp1Vec;
+	obj->vec = temp2Vec;
 }
 void object::apply_vec() {
 	pos.x += vec.x;
@@ -47,23 +65,20 @@ void object::printObj() const {
 	std::cout << "prev : " << prev << ", pos : " << pos.x << ", " << pos.y << ", vec : " << vec.x << ", " << vec.y << ", weight : " << weight << ", speed : " << speed << std::endl;
 }
 object::~object() {
-	if (this->prev == nullptr) {
-		// if only one object exists(abnormal case)
-		if (this->next == nullptr) {
-			ObjList.ptr = nullptr;
-			return;
-		}
+	if (this->prev == nullptr && this->next == nullptr) {
+		ObjList.ptr = nullptr;
+	}
+	else if (this->prev == nullptr) {
 		this->next->prev = nullptr;
 	}
 	else if (this->next == nullptr) {
-		this->prev->next = this->next;
+		this->prev->next = nullptr;
 		ObjList.ptr = this->prev;
 	}
 	else {
 		this->next->prev = this->prev;
 		this->prev->next = this->next;
 	}
-
 }
 
 bool circle::operator==(object* obj) const  {

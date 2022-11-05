@@ -8,8 +8,19 @@ typedef struct {
 class Vec2D {
 public:
 	float x = 0, y = 0;
+	Vec2D() = default;
+	Vec2D(float x, float y) : x(x), y(y) {}
+	Vec2D(const Vec2D& vec) : x(vec.x), y(vec.y) {}
 
-	Vec2D proj(const Vec2D& vec) const;
+	Vec2D&& proj(const Vec2D& vec) const;
+	float inner_product(const Vec2D& vec) const;
+	void scalar_multiply(float scalar);
+	void normallize();
+
+	void operator=(const Vec2D& vec) {
+		x = vec.x;
+		y = vec.y;
+	}
 };
 
 static struct ObjList {
@@ -25,6 +36,7 @@ private:
 	short color;
 	float weight;
 	float speed = 0;
+	short hitCount = 0;
 
 public:
 	object(float x, float y, int _weight);
@@ -37,6 +49,7 @@ public:
 	void reverseY_vec();
 	void elastic_collision(object* obj);
 
+
 	// loop
 	void apply_vec();
 
@@ -47,9 +60,13 @@ public:
 	__inline float getS() const { return speed; }
 	__inline short getColor() const { return color; }
 	__inline object* getPrev() const { return prev; }
+	__inline object* getNext() const { return next; }
 	__inline float getXvec() { return vec.x; }
 	__inline float getYvec() { return vec.y; }
+	__inline float getHitCount() { return hitCount; }
+	__inline void add_hitCount() { hitCount++; }
 	__inline void add_vec(const float x, const float y) { vec.x += x; vec.y += y; }
+	__inline void set_vec(const float x, const float y) { vec.x = x; vec.y = y; }
 
 	// operator override
 	virtual bool operator==(object* obj) const = 0;

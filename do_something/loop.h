@@ -5,6 +5,7 @@
 
 void gotoxy(int x, int y);
 void set_gravity(object* obj);
+object* set_obj_collision(object* obj);
 void set_box_collision(object* obj);
 void renderer(object* obj);
 void main_loop();
