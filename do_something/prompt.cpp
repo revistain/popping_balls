@@ -1,6 +1,6 @@
 #include "prompt.h"
-#define col 80
-#define row 30
+#define col 120
+#define row 60
 
 void text_color(int color_number) {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color_number);
@@ -15,7 +15,7 @@ void hide_cursor() {
 
 void prompt_main() {
 	hide_cursor();
-	system("mode con cols=80 lines=30 | title Popping");
+	system("mode con cols=120 lines=60 | title Popping");
 }
 
 // https://cplusplus.com/forum/beginner/100115/

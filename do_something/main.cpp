@@ -27,7 +27,7 @@ int main() {
 		fps.update();
 		main_loop();
 
-		if(i % 10 == 0) new circle(rand()%80, rand()%20, rand()%5+1);
+		if(i % 5 == 0) new circle(rand()%80, rand()%20, rand()%5+1);
 
 		text_color(6);
 		Sleep(1);

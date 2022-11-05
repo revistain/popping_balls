@@ -1,8 +1,8 @@
 #include "loop.h"
 #include "prompt.h"
 #define GRAVITY 0.02
-#define col 80
-#define row 30
+#define col 120
+#define row 60
 
 void gotoxy(int x, int y)
 {
