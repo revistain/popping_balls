@@ -13,7 +13,7 @@ void traverseLinkedList() {
 		cnt++;
 	} while ((listptr = listptr->getPrev()) != nullptr);
 	gotoxy(0, 1);
-	std::cout << "순회중 리스트 개수: " << cnt;
+	std::cout << "ball count: " << cnt;
 }
 
 int main() {
